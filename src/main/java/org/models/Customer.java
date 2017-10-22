@@ -1,8 +1,9 @@
 package org.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerData {
+public class Customer {
 
 	private long customerId;
 	private double amount;
@@ -24,10 +25,11 @@ public class CustomerData {
 	}
 
 	private boolean loanCustomer;
+	
 	private List<Transaction> transactions;
 	
-	public CustomerData() {
-		
+	public Customer() {
+		classification = new ArrayList<>();
 	}
 
 	public long getCustomerId() {
@@ -56,7 +58,7 @@ public class CustomerData {
 
 	@Override
 	public String toString() {
-		return "CustomerData [customerId=" + customerId + ", amount=" + amount + ", classification=" + classification
+		return "Customer [customerId=" + customerId + ", amount=" + amount + ", classification=" + classification
 				+ ", loanCustomer=" + loanCustomer + ", transactions=" + transactions + "]";
 	}
 	
