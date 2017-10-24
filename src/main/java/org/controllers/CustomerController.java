@@ -1,5 +1,7 @@
 package org.controllers;
 
+import java.util.List;
+
 import org.models.Customer;
 import org.models.CustomerResponse;
 import org.service.CustomerService;
@@ -31,6 +33,17 @@ public class CustomerController {
 		return "works";
 	}
 
+	@RequestMapping("/config")
+	@ResponseBody
+	public ResponseEntity<CustomerResponse> getCustomerList() {
+
+		List<Integer> list = customerService.getConfig();
+		
+		return new ResponseEntity<CustomerResponse>(
+				new CustomerResponse(list),
+				HttpStatus.OK);
+	}
+	
 	@RequestMapping("/customer")
 	@ResponseBody
 	public ResponseEntity<CustomerResponse> getTransactions(@RequestParam final String id,

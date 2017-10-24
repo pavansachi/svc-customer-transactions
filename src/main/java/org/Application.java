@@ -95,13 +95,9 @@ public class Application {
 			
 			repository.save(customers);
 			
-			List<CustomerRecord> list = repository.findByCustomerIdAndMonthAndYearOrderByDateAscAmountAsc(1, 4, 2016);
+			List<Integer> cList = repository.findAllDistinctCustomers();
 			
-			list.stream().forEach(System.out::println);
-			
-			System.out.println(list.size());
-			
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
+			System.out.println(cList);
 
 			lines.close();
 			

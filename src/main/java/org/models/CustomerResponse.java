@@ -6,12 +6,12 @@ import java.util.List;
 
 public class CustomerResponse {
 
-	private Customer data;
-	public Customer getData() {
+	private Object data;
+	public Object getData() {
 		return data;
 	}
 
-	public void setData(Customer data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 
@@ -43,7 +43,7 @@ public class CustomerResponse {
 		errors.add(new ErrorResponse(code, message));
 	}
 
-	public CustomerResponse(Customer data) {
+	public CustomerResponse(Object data) {
 		this();
 		this.data = data;
 	}
