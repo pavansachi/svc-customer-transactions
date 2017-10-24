@@ -19,6 +19,13 @@ Application starts on port 8080
 GET http://localhost:8080/transactions/customer?id=<customer_id>&mon=<month>&y=<year>
 
 GET http://localhost:8080/transactions/config
-  
+
+curl "http://localhost:8080/transactions/config" | jq
+
+
+
 Example: http://localhost:8080/transactions/customer?id=2>&mon=4&y=2016
+
+curl "http://localhost:8080/transactions/customer?id=2>&mon=4&y=2016" | jq
+
 
