@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.models.domain.CustomerRecord;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomerRepository extends CrudRepository<CustomerRecord, Serializable>  {
@@ -12,4 +13,6 @@ public interface CustomerRepository extends CrudRepository<CustomerRecord, Seria
 	List<CustomerRecord> findByCustomerIdAndMonthAndYearOrderByDateAscAmountAsc(long customerId, int month, int year);
 	List<CustomerRecord> findByCustomerIdAndYearOrderByDateAscAmountAsc(long customerId, int year);
 	
+	@Query(value="select distinct c.customerId from CustomerRecord c")
+	List<Integer> findAllDistinctCustomers();
 }
