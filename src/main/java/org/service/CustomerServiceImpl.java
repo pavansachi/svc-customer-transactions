@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.models.Customer;
 import org.models.Transaction;
 import org.models.domain.CustomerRecord;
@@ -23,6 +24,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepository repository;
 
+	final static Logger logger = Logger.getLogger(CustomerServiceImpl.class);
+	
 	@Override
 	public Customer getCustomerReport(long customerId) {
 
@@ -44,9 +47,13 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		c.setClassification(classifications);
 		
+		logger.debug("Classifications: " + classifications);
+		
 		boolean loanCustomer = classifications.containsAll(Arrays.asList("BIG_SPENDER", "FAST_SPENDER"));
 		
 		c.setLoanCustomer(loanCustomer);
+		
+		logger.info("loan customer: " + loanCustomer);
 		
 		List<Transaction> transactions = records.stream().map(r -> new Transaction(r.getAmount(), r.getDescription(), r.getDate()))
 				.collect(Collectors.toList());
@@ -58,6 +65,8 @@ public class CustomerServiceImpl implements CustomerService {
 		balance = Double.parseDouble(sAmt);
 		
 		c.setAmount(balance);
+		
+		logger.debug("Balance as of now: " + balance);
 		
 		return c;
 	}
