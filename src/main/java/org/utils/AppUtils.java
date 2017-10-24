@@ -10,9 +10,10 @@ public class AppUtils {
 		Calendar now = Calendar.getInstance();
 		now.setTime(date);
 
-		int hour = now.get(Calendar.HOUR_OF_DAY);
+//		int hour = now.get(Calendar.HOUR_OF_DAY);
+		int am_pm = now.get(Calendar.AM_PM);
 
-		if (hour > 12) {
+		if (am_pm == Calendar.PM) {
 			return true;
 		}
 
@@ -24,9 +25,10 @@ public class AppUtils {
 		Calendar now = Calendar.getInstance();
 		now.setTime(date);
 
-		int hour = now.get(Calendar.HOUR_OF_DAY);
-
-		if (hour < 12) {
+//		int hour = now.get(Calendar.HOUR_OF_DAY);
+		int am_pm = now.get(Calendar.AM_PM);
+		
+		if (am_pm == Calendar.AM) {
 			return true;
 		}
 
