@@ -1,5 +1,6 @@
 package org.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,10 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		c.setClassification(classifications);
 		
+		boolean loanCustomer = classifications.containsAll(Arrays.asList("BIG_SPENDER", "FAST_SPENDER"));
+		
+		c.setLoanCustomer(loanCustomer);
+		
 		List<Transaction> transactions = records.stream().map(r -> new Transaction(r.getAmount(), r.getDescription(), r.getDate()))
 				.collect(Collectors.toList());
 
@@ -47,5 +52,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getCustomerReport(long customerId, int year) {
 
 		return null;
+	}
+
+	@Override
+	public List<Integer> getConfig() {
+
+		return repository.findAllDistinctCustomers();
 	}
 }
