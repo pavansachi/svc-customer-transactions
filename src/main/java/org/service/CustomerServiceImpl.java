@@ -11,6 +11,12 @@ import org.service.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * customer service
+ * @author pavansachi
+ *
+ */
+
 @Component
 public class CustomerServiceImpl implements CustomerService {
 
@@ -27,6 +33,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getCustomerReport(long customerId, int month, int year) {
 
 		List<CustomerRecord> records = repository.findByCustomerIdAndMonthAndYearOrderByDateAscAmountAsc(customerId, month, year);
+		
+		double balance = repository.sumByAmountLessThanEqual(customerId);
 
 		Customer c = new Customer();
 
@@ -45,6 +53,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 		c.setTransactions(transactions);
 
+		String sAmt = String.format("%.2f", balance);
+		
+		balance = Double.parseDouble(sAmt);
+		
+		c.setAmount(balance);
+		
 		return c;
 	}
 

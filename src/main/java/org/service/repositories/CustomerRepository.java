@@ -15,4 +15,8 @@ public interface CustomerRepository extends CrudRepository<CustomerRecord, Seria
 	
 	@Query(value="select distinct c.customerId from CustomerRecord c")
 	List<Integer> findAllDistinctCustomers();
+	
+	@Query(value="select sum(c.amount) from CustomerRecord c where date <= CURRENT_DATE and customerId = ?1")
+	double sumByAmountLessThanEqual(long customerId);
+	
 }

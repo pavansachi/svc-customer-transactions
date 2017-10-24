@@ -5,6 +5,11 @@ import java.util.List;
 
 import org.models.domain.CustomerRecord;
 
+/**
+ * Configured rules
+ * @author pavansachi
+ *
+ */
 public class CustomerRules {
 
 	public static List<String> applyRules (List<CustomerRecord> records) {
@@ -35,6 +40,10 @@ public class CustomerRules {
 			
 			case POTENTIAL_SAVER: status = e.apply(records);
 			if (status) classifications.add("POTENTIAL_SAVER");
+			break;
+			
+			case FAST_SPENDER: status = e.apply(records);
+			if (status) classifications.add("FAST_SPENDER");
 			break;
 			
 			default: break;

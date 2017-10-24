@@ -95,10 +95,6 @@ public class Application {
 			
 			repository.save(customers);
 			
-			List<Integer> cList = repository.findAllDistinctCustomers();
-			
-			System.out.println(cList);
-
 			lines.close();
 			
 		} catch (IOException e) {
@@ -107,8 +103,6 @@ public class Application {
 		}
 
 		return (args) -> {
-
-			repository.save(new CustomerRecord());
 
 		};
 	}
